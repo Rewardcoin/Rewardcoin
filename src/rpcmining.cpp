@@ -134,7 +134,7 @@ Value gethashespersec(const Array& params, bool fHelp)
         return "No information yet. Wait at least 4 minutes after starting mining for estimate.";
         //return (boost::int64_t)0;
     }
-    return dHashesPerSec;
+    return dHashesPerSec / 60.0;
 }
 
 Value getmininginfo(const Array& params, bool fHelp)
