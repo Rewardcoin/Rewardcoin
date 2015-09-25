@@ -1089,19 +1089,12 @@ static const int64 nBlockRewardMinimumCoin = 1 * COIN;
 //int64 static GetBlockValue(int nHeight, int64 nFees, unsigned int nBits)
 int64 static GetBlockValue(int nHeight, int64 nFees,unsigned int nBits)
 {
-		int64 nshare;
-    	if (nHeight == 0)
-    	{
-        	return nGenesisBlockCoin;
-    	}
-		if(nBits == 0)
-		{
-			return 0;
-		}
+    int64 nSubsidy = 50 * COIN;
 
-        nshare = 50 * COIN;        
-        (nshare >>= (nHeight / 21000));
-        return nshare + nFees;
+    // Subsidy is cut in half every 21000 blocks, which will occur approximately every 4 years
+    nSubsidy >>= (nHeight / 21000);
+
+    return nSubsidy + nFees;
 }
 
 
